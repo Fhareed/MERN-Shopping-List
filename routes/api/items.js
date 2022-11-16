@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const auth = require('../../middleware/auth')
 
 // bring in the item model from models/item.js
 const Item = require('../../models/item');
@@ -17,9 +18,9 @@ router.get('/', (req, res) => {// instead of using api/Item we just use '/' beca
 
 // @route POST api/items 
 //@desc Create an item
-//@access Public 
+//@access Private
 
-router.post('/', (req, res) => {// instead of using api/Item we just use '/' because we already declared that in server.js
+router.post('/', auth, (req, res) => {// instead of using api/Item we just use '/' because we already declared that in server.js
     const newItem = new Item({ //creating a new item model we required 
         name: req.body.name
     });
@@ -29,9 +30,9 @@ router.post('/', (req, res) => {// instead of using api/Item we just use '/' bec
 
 // @route DELETE api/items/:id
 //@desc Delete an item 
-//@access Public 
+//@access Private 
 
-router.delete('/:id', (req, res) => {// instead of using api/Item we just use '/' because we already declared that in server.js
+router.delete('/:id', auth, (req, res) => {// instead of using api/Item we just use '/' because we already declared that in server.js
     Item.findById(req.params.id)
      .then(item => item.remove().then(() => res.json({ success: 'Done' })))
      .catch(err => res.status(404).json({ success: 'Failed' }));
