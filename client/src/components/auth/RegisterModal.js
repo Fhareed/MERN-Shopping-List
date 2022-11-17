@@ -34,13 +34,19 @@ class RegisterModal extends Component {
 
   //To display login error
   componentDidUpdate(prevProps) {
-    const { error } = this.props;
+    const { error, isAuthenticated } = this.props;
     if (error !== prevProps.error) {
       //check for register error
       if (error.id === "REGISTER_FAIL") {
         this.setState({ msg: error.msg.msg });
       } else {
         this.setState({ msg: null });
+      }
+    }
+    // if Authenticated
+    if (this.state.modal) {
+      if (isAuthenticated) {
+        this.toggle();
       }
     }
   }
