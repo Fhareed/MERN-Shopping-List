@@ -45,8 +45,8 @@ class RegisterModal extends Component {
     }
     // if Authenticated
     if (this.state.modal) {
-      if (isAuthenticated) {
-        this.toggle();
+      if (isAuthenticated){
+        //this.toggle();
       }
     }
   }
@@ -56,7 +56,7 @@ class RegisterModal extends Component {
     this.props.clearErrors();
 
     this.setState({
-      modal: !this.state.modal,
+      modal: !this.state.modal
     });
   };
 
