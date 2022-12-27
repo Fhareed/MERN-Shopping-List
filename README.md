@@ -7,6 +7,9 @@ Add your MONGO_URI to the default.json file. Make sure you set an env var for th
 # Install dependencies for server
 npm install
 
+# Change node version using nvm 
+nvm use 14.10.0
+
 # Install dependencies for client
 npm run client-install
 
